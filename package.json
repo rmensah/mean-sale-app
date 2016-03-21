@@ -2,7 +2,7 @@
   "name": "mean-sale-app",
   "version": "1.0.0",
   "description": "This MEAN Stack APP allows users to to log in and do the following: * List items for sale * Buy items * Leave comments on items",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
