@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app='meanSaleApp'>
 	<head>
 		<meta charset="utf-8">
 		<title>Buy Sell APP</title>
@@ -25,7 +25,59 @@
 		<button type="button" id="#register-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal">Register</button>
 	</div>
 </div>
-						
+
+
+<div id="wrapper">
+    <h1>Your Market Space</h1>
+    <div ng-controller="BuySellController as buySell">
+      <div id="onboard" ng-hide="buySell.loggedIn">
+          <form ng-submit="buySell.login()">
+            <div>
+              <input class="solo-input" placeholder="Enter a username" ng-model="buySell.username" type="text" value="" />
+            </div>
+            <div id="login-button">
+              <button type="submit" class="solo-button">
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Enter
+              </button>
+            </div>
+          </form>
+      </div>
+
+      <div ng-show="buySell.loggedIn">
+        <h2>Hi, {{buySell.username}}!</h2>
+        <h3>Your List: {{buySell.item | currency}}</h3>
+        <h3>Monthly: {{buySell.monthlyItem | currency}}</h3>
+        <form ng-submit="buySell.updateItem()">
+          <div>
+            <input class="solo-input" placeholder="Item" ng-keyup="buySell.calculate()" ng-model="buySell.salary" type="number" value="" />
+          </div>
+          <div id="login-button">
+            <button type="submit" class="solo-button">
+              <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Save Item to DB for your next visit
+            </button>
+          </div>
+        </form>
+
+        <div id="itemShow">
+          <table>
+            <tr><th>Name</th><th>Amount</th><th>Delete</th></tr>
+            <tr ng-repeat="item in buySell.item"><td>{{item.name}}</td><td>{{item.amount | currency}}</td><td ng-click="buySell.deleteItem(item._id)"><button>X</button></td></tr>
+          </table>
+        </div>
+
+
+
+      <form ng-submit="buySell.addItem()">
+        <input id="itemtitle" type="text" ng-model="buySell.item.name" placeholder="Item Name">
+        <input id="itemamount" type="number" ng-model="buySell.item.amount" placeholder="Amount">
+        <button id="submitbutton" type="submit">Add Item</button>
+      </form>
+
+      <h2>You have {{buySell.itemsLeft | currency}} left!</h2>
+    </div>
+
+    </div>
+  </div>						
 
 
 
@@ -33,7 +85,7 @@
 
 
 
-
+<!--Modal -->
 <aside class="modal fade" id="registerModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">

@@ -23,8 +23,8 @@ app.get('/', function(req, res) {
 
 
 //Get New User With Populated items
-app.post('/user', function(req, res) {
-  req.body.username = req.body.username.toLowerCase();
+app.post('/save', function(req, res) {
+  //req.body.username = req.body.username.toLowerCase();
   User.findOne({
       'username': req.body.username
     })
