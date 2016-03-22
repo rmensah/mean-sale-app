@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var logger = require('morgan');
+var PORT = process.env.PORT || 8080;
 
 /*Mongoose Connect*/
 var db = 'mongodb://localhost/saleslist';
@@ -82,7 +83,7 @@ app.post('/newItem/:id', function(req, res) {
 });
 
 
-var port = 3000;
-app.listen(port, function() {
-  console.log("listening on port:" + port);
+
+app.listen(PORT, function() {
+  console.log("listening on port: %s", + PORT);
 });
